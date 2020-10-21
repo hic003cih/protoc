@@ -1,0 +1,24 @@
+//定義使用的版本
+syntax = "proto3";
+
+//出現下面錯誤,要加上這行
+//2020/10/08 23:06:42 WARNING: Missing 'go_package' option in "echo.proto",
+//please specify it with the full Go package path as
+//a future release of protoc-gen-go will require this be specified.
+option go_package = ".;echo";
+//定義傳送和接收的message
+service EchoServer{
+    rpc Echo(EchoRequest) returns (EchoResponse){
+
+    }
+}
+//傳送的東西,用message
+message EchoRequest {
+    //這邊定義要傳的東西,後面的數字不能重複
+    //ex:string message = 1;string signed = 2;
+    string message = 1;
+}
+//返回的東西,用message
+message EchoResponse {
+    string response = 1;
+}
